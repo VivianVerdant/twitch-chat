@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
+    <link rel='stylesheet'><link rel="stylesheet" href="./style.css">
+	<title>Twitch Chat</title>
+</head>
+<body>
+    <div id="chat">
+        <ul>
+        </ul>
+    </div>
+</body>
+			
+	<script>
+		async function onTimeout(ID){
+    		// Do any animations, etc to fade out or move offscreen
+			const element = document.querySelector("#" + ID);
+			element.classList.remove("animateIn");
+			element.classList.add("fadeOut");
+			setTimeout((id) => {document.querySelector("#" + id).remove()}, 10000, new String(ID));
+			console.log(ID);
+			}
+			
+
+		var chat = document.querySelector("#chat>ul");
+		
+		ComfyJS.onChat = (user, message, flags, self, extra) => {
+			var newMessage = document.createElement("li");
+			newMessage.classList.add("animateIn");
+			newMessage.id = "a" + extra.id;
+			if(flags.broadcaster == true){
+				newMessage.className = "broadcaster";
+			}
+			newMessage.innerHTML = `<span class="userName">${user}</span>: ${message}`;
+			setTimeout(onTimeout, 10000, new String(newMessage.id));
+			chat.append(newMessage);
+		}
+
+		ComfyJS.onMessageDeleted = (id, extra) => {
+			var toYeet = document.getElementById(extra.id);
+			toYeet.remove();
+		}
+
+		ComfyJS.Init("meika_fira");
+	</script
+</html>

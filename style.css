@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "Jellee";
+  src:
+    local("Jellee"),
+    url("Jellee-Roman.otf") format("opentype"),
+}
+html,body {
+	margin: 0;
+	font-family: Jellee;
+	color: white;
+}
+
+.username {
+	color:aquamarine;
+}
+
+.broadcaster .userName {
+	color: orange;
+}
+
+.fadeOut {
+	animation-duration: 10s !important;
+	animation-name: fade-out-animation !important;
+}
+
+@keyframes slide-in-left {
+    from {
+        transform: translateX(420px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}	
+
+@keyframes fade-out-animation {
+    from {
+        opacity: 1 !important;
+    }
+
+    to {
+        opacity: 0 !important;
+    }
+}	
+
+#chat::-webkit-scrollbar {
+	display: none; 
+}
+#chat {
+	width: 420px;
+	height: 250px;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column-reverse;
+}
+#chat ul {
+	list-style-type: none;
+	list-style-position: outside;
+}
+#chat li {
+	background-color: cd3f52;
+	background-image: url("polkadotpattern.png");
+	box-sizing: border-box;
+	padding: 5px 30px 5px 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ac2d3e;
+	border-radius: 10px;
+	box-shadow: 5px 5px #6d375d;
+	position: relative;
+	overflow: hidden;
+	text-shadow: 1px 1px #000000;
+}
+
+#chat .animateIn {
+    animation-name: slide-in-left;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+}
+
